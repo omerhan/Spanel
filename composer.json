@@ -1,0 +1,29 @@
+{
+    "name": "omerhan/spanel",
+    "description": "Laravel Admin Panel",
+    "type": "project",
+    "license": "MIT",
+    "homepage": "https://github.com/omerhan/spanel",
+    "authors": [
+        {
+            "name": "Ömer HaN",
+            "email": "omerhan@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omerhan\\Spanel\\": "src/"
+        }
+    },
+    "extra": {
+    "laravel": {
+        "providers": [
+            "Omerhan\\Spanel\\SpanelServiceProvider"
+        ]
+    }
+},
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/support": "~5"
+    }
+}
