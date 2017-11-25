@@ -15,7 +15,8 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function ($table) {
             $table->integer('role_id')->nullable()->after('email')->default(4);
-            $table->string('avatar',500)->nullable()->after('role_id')->default('no-avatar.png');
+            $table->string('avatar',500)->nullable()->after('role_id');
+            $table->integer('active')->after('avatar')->default(1);
         });
     }
 
@@ -29,6 +30,7 @@ class UpdateUsersTable extends Migration
         Schema::table('users', function ($table) {
             $table->dropColumn('role_id');
             $table->dropColumn('avatar');
+            $table->dropColumn('active');
         });
     }
 }

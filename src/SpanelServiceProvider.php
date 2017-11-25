@@ -18,10 +18,17 @@ class SpanelServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'spanel');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->app['router']->aliasMiddleware('langs', 'Omerhan\Spanel\Http\Middleware\SetLocale');
+        if(config('spanel.multipleLang')==true){
         $this->app['router']->aliasMiddleware('roles', 'Omerhan\Spanel\Http\Middleware\CheckRole');
+        }
         //$this->publishes([__DIR__.'/resources/assets' => public_path('assets/')], 'spanel');
         //$this->publishes([__DIR__.'/resources/views/auth' => resource_path('views/auth')], 'spanel');
         //$this->publishes([__DIR__.'/resources/lang' => resource_path('lang')], 'spanel');
+
+
+
+
     }
 
     /**
@@ -37,7 +44,10 @@ class SpanelServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/config/spanel.php', 'spanel'
         );
+        $this->app->make('Omerhan\Spanel\Http\Controllers\UsersController');
+        if(config('spanel.multipleLang')==true){
+            $this->app->make('Omerhan\Spanel\Http\Controllers\LangsController');
+        }
 
-        //$this->app->make('omerhan\spanel\Http\Controllers\SpanelController');
     }
 }

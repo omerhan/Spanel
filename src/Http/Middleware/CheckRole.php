@@ -18,14 +18,17 @@ class CheckRole
 
     public function handle($request, Closure $next)
     {
-
         $user = User::find(Auth::user()->id);
         $roles = $this->getRole($request->route());
         if ($user->hasRole($roles) || !$roles){
-            return $next($request);
+            if(Auth::user()->active == 0){
+                Auth::logout();
+                redirect()->guest('/');
+            }else{
+                return $next($request);
+            }
         }
         return redirect()->guest('/');
-
     }
 
     public function getRole($route){

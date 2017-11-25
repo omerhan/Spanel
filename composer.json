@@ -10,6 +10,10 @@
             "email": "omerhan@outlook.com"
         }
     ],
+    "require": {
+        "intervention/image": "^2.4",
+        "illuminate/support": "~5"
+    },
     "autoload": {
         "psr-4": {
             "Omerhan\\Spanel\\": "src/"
@@ -22,8 +26,5 @@
         ]
     }
 },
-    "minimum-stability": "stable",
-    "require": {
-        "illuminate/support": "~5"
-    }
+    "minimum-stability": "stable"
 }
